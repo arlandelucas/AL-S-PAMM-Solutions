@@ -23,7 +23,7 @@ def obter_informacoes_conta(session):
 
 # Função para gerar arquivo JSON com dados da conta
 def gerar_json(dados_conta):
-    with open('dados/dados_conta.json', 'w') as file:
+    with open('dados_conta.json', 'w') as file:
         json.dump(dados_conta, file)
     print("Arquivo JSON gerado com sucesso!")
 

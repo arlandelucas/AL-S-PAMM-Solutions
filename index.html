@@ -181,7 +181,7 @@
 
     <script>
         // Carregar o arquivo JSON gerado pelo Python e preencher a tabela
-        fetch('../dados/dados_conta.json')
+        fetch('dados_conta.json')
             .then(response => response.json())
             .then(dados => {
                 const tabelaBody = document.getElementById('dados-conta');
