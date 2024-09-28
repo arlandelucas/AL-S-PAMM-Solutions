@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <base href="">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZARF Strategy - Investimento Inteligente</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
-  <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
   <div class="ticker-tape">
     <div class="ticker-tape-content">
@@ -53,7 +47,7 @@
   </header>
 
   <main>
-    <section id="home" class="hero" data-aos="fade-up">
+    <section id="home" class="hero">
       <div class="container">
         <h1>Maximize seus investimentos com ZARF Strategy</h1>
         <p>Estratégias avançadas de trading com risco controlado e retornos consistentes</p>
@@ -61,7 +55,7 @@
       </div>
     </section>
 
-    <section id="strategy" class="section" data-aos="fade-up">
+    <section id="strategy" class="section">
       <div class="container">
         <h2 class="section-title">Nossa Estratégia de Investimento</h2>
         <div class="strategy-grid">
@@ -89,7 +83,7 @@
       </div>
     </section>
 
-    <section id="pamm-info" class="section" data-aos="fade-up">
+    <section id="pamm-info" class="section">
       <div class="container">
         <h2 class="section-title">O que é uma conta PAMM?</h2>
         <div class="pamm-info-content">
@@ -105,7 +99,7 @@
       </div>
     </section>
 
-    <section id="performance" class="section" data-aos="fade-up">
+    <section id="performance" class="section">
       <div class="container">
         <h2 class="section-title">Histórico de Performance</h2>
         <div class="performance-chart">
@@ -136,107 +130,94 @@
             <circle cx="350" cy="275" r="4" fill="#4CAF50" data-value="106000" />
             <circle cx="450" cy="250" r="4" fill="#4CAF50" data-value="108000" />
             <circle cx="550" cy="225" r="4" fill="#4CAF50" data-value="110000" />
-            <circle cx="650" cy="200" r="4" fill="#4CAF50" data-value="112000" />
-            <circle cx="750" cy="175" r="4" fill="#4CAF50" data-value="115000" />
+            <circle cx="650" cy="200" r="4" fill="#4CAF50" data-value="111000" />
+            <circle cx="750" cy="175" r="4" fill="#4CAF50" data-value="112000" />
+
+            <!-- Value display -->
+            <text id="value-display" x="400" y="30" text-anchor="middle" font-size="14" fill="#333" display="none"></text>
           </svg>
-          <p class="chart-description">O gráfico mostra o crescimento do capital em um período de 30 dias, começando com R$ 100.000,00.</p>
+        </div>
+        <div class="performance-details">
+          <h3>Detalhes de Performance</h3>
+          <p>A performance é calculada em cima do valor inicial de R$ 100.000,00. Através da estratégia ZARF, conseguimos um crescimento constante ao longo de 30 dias. Com isso, seu investimento inicial pode se multiplicar, sempre com foco na preservação do capital e na geração de retorno.</p>
         </div>
       </div>
     </section>
 
-    <section id="calculator" class="section" data-aos="fade-up">
+    <section id="calculator" class="section">
       <div class="container">
-        <h2 class="section-title">Calculadora de Retorno</h2>
-        <form id="return-calculator">
-          <div class="form-group">
-            <label for="initial-investment">Investimento Inicial (R$):</label>
-            <input type="number" id="initial-investment" required>
-          </div>
-          <div class="form-group">
-            <label for="annual-return">Retorno Anual (%):</label>
-            <input type="number" id="annual-return" required>
-          </div>
-          <div class="form-group">
-            <label for="investment-period">Período de Investimento (anos):</label>
-            <input type="number" id="investment-period" required>
-          </div>
-          <button type="submit" class="btn">Calcular</button>
+        <h2 class="section-title">Calculadora de Investimentos</h2>
+        <form id="investment-calculator">
+          <label for="initial-investment">Investimento Inicial (R$):</label>
+          <input type="number" id="initial-investment" required />
+
+          <label for="investment-period">Período de Investimento (meses):</label>
+          <input type="number" id="investment-period" required />
+
+          <label for="monthly-return">Retorno Mensal (%) :</label>
+          <input type="number" id="monthly-return" step="0.01" required />
+
+          <button type="submit">Calcular</button>
         </form>
-        <div id="calculator-result" class="result"></div>
+        <div id="investment-result" class="result"></div>
       </div>
     </section>
 
-    <section id="broker-info" class="section" data-aos="fade-up">
+    <section id="broker-info" class="section">
       <div class="container">
-        <h2 class="section-title">Nossa Corretora: Moneta Markets</h2>
-        <p>A Moneta Markets é a corretora escolhida pela ZARF Strategy Investimentos para proporcionar aos nossos investidores uma plataforma confiável e de alta performance. Com a Moneta Markets, você conta com:</p>
-        <ul>
-          <li>Spreads competitivos</li>
-          <li>Execução rápida de ordens</li>
-          <li>Suporte dedicado ao cliente</li>
-          <li>Plataformas avançadas de trading</li>
-        </ul>
-        <p>Abra sua conta na Moneta Markets e comece a investir com segurança!</p>
+        <h2 class="section-title">Nossa Corretora</h2>
+        <p>Trabalhamos com uma corretora regulamentada e segura, que oferece uma plataforma robusta para negociação. Nossos investidores têm acesso a ferramentas de trading avançadas, suporte ao cliente excepcional e a melhor experiência de trading do mercado.</p>
+        <a href="https://www.brokerwebsite.com" target="_blank" class="cta-button">Saiba Mais</a>
       </div>
     </section>
 
-    <section id="step-by-step" class="section" data-aos="fade-up">
+    <section id="step-by-step" class="section">
       <div class="container">
-        <h2 class="section-title">Passo a Passo para Investir</h2>
+        <h2 class="section-title">Passo a Passo para Começar</h2>
         <ol>
-          <li>Clique no botão 'Comece a Investir' e abra sua conta na Moneta Markets.</li>
-          <li>Deposite o valor inicial de R$ 500,00 em sua conta PAMM.</li>
-          <li>Escolha o gestor de investimentos que melhor se adapta ao seu perfil.</li>
-          <li>Monitore seu investimento e acompanhe seu crescimento através do painel da Moneta Markets.</li>
-          <li>Retire seus lucros ou reinvista conforme preferir!</li>
+          <li>Faça seu cadastro em nossa plataforma.</li>
+          <li>Realize seu primeiro depósito (mínimo de R$ 500).</li>
+          <li>Escolha a estratégia ZARF e comece a investir.</li>
+          <li>Monitore seus investimentos através do nosso painel de controle.</li>
+          <li>Retire seus lucros a qualquer momento.</li>
         </ol>
       </div>
     </section>
 
-    <section id="blog" class="section" data-aos="fade-up">
+    <section id="blog" class="section">
       <div class="container">
-        <h2 class="section-title">Blog e Notícias</h2>
-        <p>Acompanhe nosso blog para dicas, análises e as últimas novidades do mercado financeiro.</p>
-        <ul class="blog-posts">
-          <li>
-            <h3><a href="#">Como escolher a melhor estratégia de investimento</a></h3>
-            <p>Aprenda a identificar as estratégias que se adaptam ao seu perfil e objetivos financeiros.</p>
-          </li>
-          <li>
-            <h3><a href="#">O que são contas PAMM e como funcionam?</a></h3>
-            <p>Entenda melhor o funcionamento das contas PAMM e como elas podem beneficiá-lo.</p>
-          </li>
-          <li>
-            <h3><a href="#">Dicas para iniciantes em trading</a></h3>
-            <p>Confira nossas dicas valiosas para quem está começando no mundo do trading.</p>
-          </li>
-        </ul>
+        <h2 class="section-title">Últimos Artigos do Blog</h2>
+        <div class="blog-posts">
+          <article class="blog-post">
+            <h3>Título do Artigo 1</h3>
+            <p>Resumo do artigo 1. Um texto breve sobre o que o leitor pode esperar ao ler este artigo.</p>
+            <a href="#" class="read-more">Leia Mais</a>
+          </article>
+          <article class="blog-post">
+            <h3>Título do Artigo 2</h3>
+            <p>Resumo do artigo 2. Um texto breve sobre o que o leitor pode esperar ao ler este artigo.</p>
+            <a href="#" class="read-more">Leia Mais</a>
+          </article>
+          <article class="blog-post">
+            <h3>Título do Artigo 3</h3>
+            <p>Resumo do artigo 3. Um texto breve sobre o que o leitor pode esperar ao ler este artigo.</p>
+            <a href="#" class="read-more">Leia Mais</a>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2024 ZARF Strategy Investimentos. Todos os direitos reservados.</p>
+      <p>&copy; 2024 ZARF Strategy Investimentos. Todos os direitos reservados.</p>
+      <ul class="social-media">
+        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+      </ul>
     </div>
   </footer>
-
-  <script>
-    AOS.init({
-      duration: 1200,
-    });
-
-    document.getElementById('return-calculator').addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const initialInvestment = parseFloat(document.getElementById('initial-investment').value);
-      const annualReturn = parseFloat(document.getElementById('annual-return').value) / 100;
-      const investmentPeriod = parseFloat(document.getElementById('investment-period').value);
-
-      const totalReturn = initialInvestment * Math.pow(1 + annualReturn, investmentPeriod);
-      document.getElementById('calculator-result').innerText = `Após ${investmentPeriod} anos, seu retorno total será de R$ ${totalReturn.toFixed(2)}.`;
-    });
-  </script>
 </body>
-
 </html>
