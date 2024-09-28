@@ -1,226 +1,109 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <base href="">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZARF Strategy - Investimento Inteligente</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>Website com AOS e Bootstrap</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- AOS CSS (Animate on Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .hero-section {
+      height: 100vh;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-section h1 {
+      font-size: 4rem;
+    }
+    .hero-section p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+    .about-section {
+      padding: 100px 0;
+      background-color: #f8f9fa;
+    }
+    .about-section h2 {
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="ticker-tape">
-    <div class="ticker-tape-content">
-      <span class="ticker-item">EUR/USD: 1.1850 (<span class="percentage positive">+0.15%</span>)</span>
-      <span class="ticker-item">GBP/USD: 1.3750 (<span class="percentage negative">-0.10%</span>)</span>
-      <span class="ticker-item">USD/JPY: 110.20 (<span class="percentage positive">+0.25%</span>)</span>
-      <span class="ticker-item">USD/BRL: 5.2500 (<span class="percentage positive">+0.20%</span>)</span>
-      <span class="ticker-item">S&P 500: 4,385 (<span class="percentage positive">+0.50%</span>)</span>
-      <span class="ticker-item">NASDAQ: 14,750 (<span class="percentage positive">+0.75%</span>)</span>
-      <span class="ticker-item">Dow Jones: 34,800 (<span class="percentage positive">+0.30%</span>)</span>
-      <span class="ticker-item">FTSE 100: 7,100 (<span class="percentage negative">-0.20%</span>)</span>
-      <span class="ticker-item">Nikkei 225: 28,500 (<span class="percentage positive">+0.60%</span>)</span>
-    </div>
-  </div>
 
-  <div class="company-name">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Minha Página</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#hero">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Sobre</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section" data-aos="fade-up">
     <div class="container">
-      ZARF Strategy Investimentos
+      <h1 data-aos="fade-right">Bem-vindo ao Meu Site</h1>
+      <p data-aos="fade-left" data-aos-delay="200">Criando experiências incríveis com animações suaves</p>
+      <a href="#about" class="btn btn-primary btn-lg" data-aos="zoom-in" data-aos-delay="400">Saiba Mais</a>
     </div>
-  </div>
+  </section>
 
-  <header>
-    <nav class="container">
-      <div class="logo">ZARF Strategy Investimentos</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#strategy">Estratégia</a></li>
-        <li><a href="#pamm-info">O que é uma conta PAMM?</a></li>
-        <li><a href="#performance">Performance</a></li>
-        <li><a href="#calculator">Calculadora</a></li>
-        <li><a href="#broker-info">Nossa Corretora</a></li>
-        <li><a href="#step-by-step">Passo a Passo</a></li>
-        <li><a href="#blog">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="home" class="hero">
-      <div class="container">
-        <h1>Maximize seus investimentos com ZARF Strategy</h1>
-        <p>Estratégias avançadas de trading com risco controlado e retornos consistentes</p>
-        <a href="https://mmsa.ltd/EviMby" class="cta-button">Comece a Investir</a>
-      </div>
-    </section>
-
-    <section id="strategy" class="section">
-      <div class="container">
-        <h2 class="section-title">Nossa Estratégia de Investimento</h2>
-        <div class="strategy-grid">
-          <div class="strategy-item">
-            <i class="fas fa-chart-line"></i>
-            <h3>Análise Técnica Avançada</h3>
-            <p>Utilizamos indicadores e padrões gráficos para identificar as melhores oportunidades.</p>
-          </div>
-          <div class="strategy-item">
-            <i class="fas fa-balance-scale"></i>
-            <h3>Gestão de Risco Rigorosa</h3>
-            <p>Implementamos stop-loss e take-profit para proteger o capital dos investidores.</p>
-          </div>
-          <div class="strategy-item">
-            <i class="fas fa-robot"></i>
-            <h3>Algoritmos de Trading</h3>
-            <p>Desenvolvemos e otimizamos algoritmos para executar trades com precisão.</p>
-          </div>
-          <div class="strategy-item">
-            <i class="fas fa-globe"></i>
-            <h3>Diversificação Global</h3>
-            <p>Operamos em múltiplos mercados e ativos para reduzir o risco e maximizar retornos.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pamm-info" class="section">
-      <div class="container">
-        <h2 class="section-title">O que é uma conta PAMM?</h2>
-        <div class="pamm-info-content">
-          <p>PAMM (Percent Allocation Management Module) é um sistema de gestão de investimentos que permite que investidores participem de estratégias de trading profissionais. Aqui está como funciona:</p>
-          <ul>
-            <li>Investidores confiam seu capital a um gestor profissional.</li>
-            <li>O gestor opera no mercado usando fundos combinados de vários investidores.</li>
-            <li>Lucros e perdas são distribuídos proporcionalmente entre os investidores.</li>
-            <li>Os investidores mantêm controle total sobre seus fundos e podem retirar a qualquer momento.</li>
-          </ul>
-          <p>Com a ZARF Strategy Investimentos, você pode começar a investir com apenas R$ 500 e obter os mesmos resultados proporcionais aos grandes investidores. Isso democratiza o acesso a estratégias de investimento profissionais e permite que você diversifique seu portfólio com eficiência.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="performance" class="section">
-      <div class="container">
-        <h2 class="section-title">Histórico de Performance</h2>
-        <div class="performance-chart">
-          <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-            <!-- X and Y axis -->
-            <line x1="50" y1="350" x2="750" y2="350" stroke="black" />
-            <line x1="50" y1="350" x2="50" y2="50" stroke="black" />
-
-            <!-- X axis labels -->
-            <text x="50" y="370" text-anchor="middle">0</text>
-            <text x="400" y="370" text-anchor="middle">15</text>
-            <text x="750" y="370" text-anchor="middle">30</text>
-            <text x="400" y="390" text-anchor="middle">Dias</text>
-
-            <!-- Y axis labels -->
-            <text x="40" y="350" text-anchor="end">100k</text>
-            <text x="40" y="262.5" text-anchor="end">106k</text>
-            <text x="40" y="175" text-anchor="end">112k</text>
-            <text x="30" y="200" text-anchor="middle" transform="rotate(-90 30 200)">Valor (R$)</text>
-
-            <!-- Updated Performance line with data points -->
-            <path id="performance-line" d="M50 350 Q100 340, 150 325 T250 300 T350 275 T450 250 T550 225 T650 200 T750 175" stroke="#4CAF50" stroke-width="3" fill="none" />
-
-            <!-- Data points -->
-            <circle cx="50" cy="350" r="4" fill="#4CAF50" data-value="100000" />
-            <circle cx="150" cy="325" r="4" fill="#4CAF50" data-value="102000" />
-            <circle cx="250" cy="300" r="4" fill="#4CAF50" data-value="104000" />
-            <circle cx="350" cy="275" r="4" fill="#4CAF50" data-value="106000" />
-            <circle cx="450" cy="250" r="4" fill="#4CAF50" data-value="108000" />
-            <circle cx="550" cy="225" r="4" fill="#4CAF50" data-value="110000" />
-            <circle cx="650" cy="200" r="4" fill="#4CAF50" data-value="111000" />
-            <circle cx="750" cy="175" r="4" fill="#4CAF50" data-value="112000" />
-
-            <!-- Value display -->
-            <text id="value-display" x="400" y="30" text-anchor="middle" font-size="14" fill="#333" display="none"></text>
-          </svg>
-        </div>
-        <div class="performance-details">
-          <h3>Detalhes de Performance</h3>
-          <ul>
-            <li>Saldo Inicial: R$ 100.000,00</li>
-            <li>Período: 30 dias</li>
-            <li>Rentabilidade: 12% sobre o saldo inicial</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="calculator" class="section">
-      <div class="container">
-        <h2 class="section-title">Calculadora de Investimentos</h2>
-        <div class="calculator-form">
-          <form id="investment-calculator">
-            <label for="initial-amount">Valor Inicial (R$):</label>
-            <input type="number" id="initial-amount" name="initial-amount" min="500" value="1000" required>
-            <label for="investment-period">Período (meses):</label>
-            <input type="number" id="investment-period" name="investment-period" min="1" value="12" required>
-            <label for="expected-return">Retorno Esperado (% ao mês):</label>
-            <input type="number" id="expected-return" name="expected-return" step="0.01" value="2.5" required>
-            <button type="submit" class="cta-button">Calcular</button>
-          </form>
-          <div id="investment-result">
-            <h3>Resultado:</h3>
-            <p><strong>Valor Final:</strong> <span id="final-value">R$ 13.000,00</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="broker-info" class="section">
-      <div class="container">
-        <h2 class="section-title">Nossa Corretora</h2>
-        <p>A ZARF Strategy Investimentos utiliza a corretora MMSA, uma das líderes do mercado com regulamentação internacional e suporte completo para seus investidores. Clique no botão abaixo para abrir sua conta na corretora e começar a investir com segurança.</p>
-        <a href="https://mmsa.ltd/EviMby" class="cta-button">Abrir Conta na Corretora</a>
-      </div>
-    </section>
-
-    <section id="step-by-step" class="section">
-      <div class="container">
-        <h2 class="section-title">Passo a Passo para Investir</h2>
-        <ol>
-          <li>Abra sua conta na corretora MMSA clicando no botão acima.</li>
-          <li>Faça um depósito inicial de pelo menos R$ 500,00.</li>
-          <li>Vincule sua conta à estratégia PAMM da ZARF Strategy.</li>
-          <li>Monitore seus resultados e faça retiradas a qualquer momento.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="blog" class="section">
-      <div class="container">
-        <h2 class="section-title">Blog</h2>
-        <div class="blog-grid">
-          <article class="blog-post">
-            <h3>Como escolher a melhor corretora?</h3>
-            <p>Saiba quais fatores são importantes ao selecionar uma corretora para seus investimentos.</p>
-            <a href="#">Leia Mais</a>
-          </article>
-          <article class="blog-post">
-            <h3>Diversificação: O segredo para reduzir riscos</h3>
-            <p>Entenda por que diversificar seus investimentos é essencial para proteger seu capital.</p>
-            <a href="#">Leia Mais</a>
-          </article>
-          <article class="blog-post">
-            <h3>Como funciona uma estratégia de trading automatizada?</h3>
-            <p>Descubra os benefícios do uso de algoritmos no trading e como eles podem otimizar seus resultados.</p>
-            <a href="#">Leia Mais</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
+  <!-- Sobre Section -->
+  <section id="about" class="about-section" data-aos="fade-up">
     <div class="container">
-      <p>&copy; 2024 ZARF Strategy Investimentos. Todos os direitos reservados.</p>
-      <p>Investir envolve riscos. Leia todos os termos e condições antes de aplicar seu capital.</p>
+      <h2 class="text-center" data-aos="fade-down">Sobre Nós</h2>
+      <div class="row">
+        <div class="col-md-6" data-aos="fade-right">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum nisl id tincidunt interdum. Integer at orci vel mi varius commodo.</p>
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit sapien id nunc mollis ultricies. Nullam feugiat quam id massa elementum, sit amet volutpat ligula aliquet.</p>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p>&copy; 2024 Minha Página. Todos os direitos reservados.</p>
   </footer>
-</body>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- AOS JS (Animate on Scroll) -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
+  <!-- AOS Init -->
+  <script>
+    AOS.init({
+      duration: 1200,  // Duração das animações (em ms)
+    });
+  </script>
+
+</body>
 </html>
