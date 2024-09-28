@@ -1,98 +1,193 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZARF Strategy - Investimento Inteligente</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZARF Strategy - Investimento Inteligente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-  <!-- Barra de ticker -->
-  <div class="ticker-tape bg-dark text-white py-2">
-    <div class="container">
-      <marquee behavior="scroll" direction="left">
-        <span class="mr-4">EUR/USD: 1.1850 (<span class="text-success">+0.15%</span>)</span>
-        <span class="mr-4">GBP/USD: 1.3750 (<span class="text-danger">-0.10%</span>)</span>
-        <span class="mr-4">USD/JPY: 110.20 (<span class="text-success">+0.25%</span>)</span>
-        <!-- Outros itens do ticker aqui -->
-      </marquee>
-    </div>
-  </div>
-
-  <!-- Nome da empresa -->
-  <div class="bg-primary text-center py-3 text-white">
-    <h1>ZARF Strategy Investimentos</h1>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">ZARF Strategy</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#strategy">Estratégia</a></li>
-          <li class="nav-item"><a class="nav-link" href="#pamm-info">PAMM</a></li>
-          <li class="nav-item"><a class="nav-link" href="#performance">Performance</a></li>
-          <li class="nav-item"><a class="nav-link" href="#calculator">Calculadora</a></li>
-          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Seção Hero -->
-  <section id="home" class="hero bg-light text-center py-5">
-    <div class="container">
-      <h1 class="display-4">Maximize seus investimentos com ZARF Strategy</h1>
-      <p class="lead">Estratégias avançadas de trading com risco controlado e retornos consistentes</p>
-      <a href="https://mmsa.ltd/EviMby" class="btn btn-primary btn-lg">Comece a Investir</a>
-    </div>
-  </section>
-
-  <!-- Nossa Estratégia -->
-  <section id="strategy" class="py-5">
-    <div class="container text-center">
-      <h2 class="mb-4">Nossa Estratégia de Investimento</h2>
-      <div class="row">
-        <div class="col-md-3">
-          <i class="fas fa-chart-line fa-3x mb-3"></i>
-          <h3>Análise Técnica</h3>
-          <p>Indicadores e padrões gráficos para identificar as melhores oportunidades.</p>
+    <!-- Ticker Tape -->
+    <div class="bg-dark text-light py-2">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span>EUR/USD: 1.1850 (<span class="text-success">+0.15%</span>)</span>
+                <span>GBP/USD: 1.3750 (<span class="text-danger">-0.10%</span>)</span>
+                <span>USD/JPY: 110.20 (<span class="text-success">+0.25%</span>)</span>
+                <span>USD/BRL: 5.2500 (<span class="text-success">+0.20%</span>)</span>
+                <span>S&P 500: 4,385 (<span class="text-success">+0.50%</span>)</span>
+                <span>NASDAQ: 14,750 (<span class="text-success">+0.75%</span>)</span>
+                <span>Dow Jones: 34,800 (<span class="text-success">+0.30%</span>)</span>
+                <span>FTSE 100: 7,100 (<span class="text-danger">-0.20%</span>)</span>
+                <span>Nikkei 225: 28,500 (<span class="text-success">+0.60%</span>)</span>
+            </div>
         </div>
-        <div class="col-md-3">
-          <i class="fas fa-balance-scale fa-3x mb-3"></i>
-          <h3>Gestão de Risco</h3>
-          <p>Stop-loss e take-profit para proteger o capital.</p>
-        </div>
-        <div class="col-md-3">
-          <i class="fas fa-robot fa-3x mb-3"></i>
-          <h3>Algoritmos de Trading</h3>
-          <p>Otimização para executar trades com precisão.</p>
-        </div>
-        <div class="col-md-3">
-          <i class="fas fa-globe fa-3x mb-3"></i>
-          <h3>Diversificação Global</h3>
-          <p>Operações em múltiplos mercados e ativos.</p>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- Scripts Bootstrap e JQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">ZARF Strategy Investimentos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#strategy">Estratégia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pamm-info">Conta PAMM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#performance">Performance</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#calculator">Calculadora</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#broker-info">Corretora</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#step-by-step">Passo a Passo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-light py-5 text-center">
+        <div class="container">
+            <h1 class="display-4">Maximize seus investimentos com ZARF Strategy</h1>
+            <p class="lead">Estratégias avançadas de trading com risco controlado e retornos consistentes.</p>
+            <a href="https://mmsa.ltd/EviMby" class="btn btn-primary btn-lg">Comece a Investir</a>
+        </div>
+    </section>
+
+    <!-- Investment Strategy Section -->
+    <section id="strategy" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossa Estratégia de Investimento</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center mb-4">
+                    <i class="fas fa-chart-line fa-3x mb-3"></i>
+                    <h4>Análise Técnica Avançada</h4>
+                    <p>Utilizamos indicadores e padrões gráficos para identificar as melhores oportunidades.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center mb-4">
+                    <i class="fas fa-balance-scale fa-3x mb-3"></i>
+                    <h4>Gestão de Risco Rigorosa</h4>
+                    <p>Implementamos stop-loss e take-profit para proteger o capital dos investidores.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center mb-4">
+                    <i class="fas fa-robot fa-3x mb-3"></i>
+                    <h4>Algoritmos de Trading</h4>
+                    <p>Desenvolvemos e otimizamos algoritmos para executar trades com precisão.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center mb-4">
+                    <i class="fas fa-globe fa-3x mb-3"></i>
+                    <h4>Diversificação Global</h4>
+                    <p>Operamos em múltiplos mercados e ativos para reduzir o risco e maximizar retornos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAMM Info Section -->
+    <section id="pamm-info" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">O que é uma Conta PAMM?</h2>
+            <p class="text-center">PAMM (Percent Allocation Management Module) é um sistema de gestão de investimentos que permite que investidores participem de estratégias de trading profissionais.</p>
+            <ul class="list-unstyled text-center">
+                <li>Investidores confiam seu capital a um gestor profissional.</li>
+                <li>O gestor opera no mercado usando fundos combinados de vários investidores.</li>
+                <li>Lucros e perdas são distribuídos proporcionalmente entre os investidores.</li>
+                <li>Os investidores mantêm controle total sobre seus fundos e podem retirar a qualquer momento.</li>
+            </ul>
+            <p class="text-center">Comece a investir com apenas R$ 500 e obtenha os mesmos resultados proporcionais aos grandes investidores.</p>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Histórico de Performance</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- SVG Performance Chart Placeholder -->
+                    <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" class="w-100">
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="black" />
+                        <line x1="50" y1="350" x2="50" y2="50" stroke="black" />
+                        <path id="performance-line" d="M50 350 Q100 340, 150 325 T250 300 T350 275 T450 250 T550 225 T650 200 T750 175" stroke="#4CAF50" stroke-width="3" fill="none" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Calculadora de Retorno</h2>
+            <form class="row g-3 justify-content-center">
+                <div class="col-md-4">
+                    <label for="investment" class="form-label">Valor do Investimento (R$)</label>
+                    <input type="number" class="form-control" id="investment" placeholder="Ex: 500" min="500">
+                </div>
+                <div class="col-md-4">
+                    <label for="days" class="form-label">Período (dias)</label>
+                    <input type="number" class="form-control" id="days" placeholder="Ex: 30" min="1">
+                </div>
+                <div class="col-12 text-center">
+                    <button type="button" class="btn btn-primary">Calcular Retorno</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Blog de Investimentos</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="blog-image-1.jpg" class="card-img-top" alt="Blog Post 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Como diversificar sua carteira de investimentos</h5>
+                            <p class="card-text">Saiba como distribuir seu capital entre diferentes ativos para minimizar riscos e aumentar retornos.</p>
+                            <a href="#" class="btn btn-primary">Leia Mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="blog-image-2.jpg" class="card-img-top" alt="Blog Post 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Entendendo a Análise Técnica</h5>
+                            <p class="card-text">Aprenda os conceitos básicos da análise técnica e como aplicá-los nas suas operações.</p>
+                            <a href="#" class="btn btn-primary">Leia Mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="blog-image-3.jpg" class="card-img-top" alt="Blog Post 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestão de Risco: Proteja seu capital</h5>
+                            <p class="card-text">Descubra estratégias eficazes para proteger seu capital e limitar perdas.</p>
+                            <a href="#" class="btn btn-primary">Leia Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 ZARF Strategy. Todos os direitos reservados.</p>
+            <a href="#" class="text-light">Política de Privacidade</a> | <a href="#" class="text-light">Termos de Serviço</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
