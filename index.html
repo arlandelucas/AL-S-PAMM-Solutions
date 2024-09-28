@@ -1,109 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website com AOS e Bootstrap</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- AOS CSS (Animate on Scroll) -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  
-  <!-- Custom CSS -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .hero-section {
-      height: 100vh;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .hero-section h1 {
-      font-size: 4rem;
-    }
-    .hero-section p {
-      font-size: 1.5rem;
-      margin: 20px 0;
-    }
-    .about-section {
-      padding: 100px 0;
-      background-color: #f8f9fa;
-    }
-    .about-section h2 {
-      margin-bottom: 40px;
-    }
-  </style>
-</head>
-<body>
+  <title>ZARF Strategy - Investimento Inteligente</title>
 
+  <!-- Google Fonts, Font Awesome, Bootstrap, AOS CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Minha Página</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#hero">Início</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about">Sobre</a>
-          </li>
-        </ul>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">ZARF Strategy Investimentos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#strategy">Estratégia</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pamm-info">Conta PAMM</a></li>
+            <li class="nav-item"><a class="nav-link" href="#performance">Performance</a></li>
+            <li class="nav-item"><a class="nav-link" href="#calculator">Calculadora</a></li>
+            <li class="nav-item"><a class="nav-link" href="#broker-info">Corretora</a></li>
+            <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="hero-section" data-aos="fade-up">
-    <div class="container">
-      <h1 data-aos="fade-right">Bem-vindo ao Meu Site</h1>
-      <p data-aos="fade-left" data-aos-delay="200">Criando experiências incríveis com animações suaves</p>
-      <a href="#about" class="btn btn-primary btn-lg" data-aos="zoom-in" data-aos-delay="400">Saiba Mais</a>
+  <section id="home" class="hero text-center" data-aos="fade-up">
+    <div class="container py-5">
+      <h1 class="display-4">Maximize seus investimentos com ZARF Strategy</h1>
+      <p class="lead">Estratégias avançadas de trading com risco controlado e retornos consistentes</p>
+      <a href="https://mmsa.ltd/EviMby" class="btn btn-primary btn-lg">Comece a Investir</a>
     </div>
   </section>
 
   <!-- Sobre Section -->
-  <section id="about" class="about-section" data-aos="fade-up">
+  <section id="strategy" class="py-5" data-aos="fade-right">
     <div class="container">
-      <h2 class="text-center" data-aos="fade-down">Sobre Nós</h2>
+      <h2 class="section-title text-center mb-4">Nossa Estratégia de Investimento</h2>
       <div class="row">
-        <div class="col-md-6" data-aos="fade-right">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum nisl id tincidunt interdum. Integer at orci vel mi varius commodo.</p>
+        <div class="col-lg-3 col-md-6 mb-4" data-aos="zoom-in">
+          <div class="text-center">
+            <i class="fas fa-chart-line fa-3x mb-3"></i>
+            <h3>Análise Técnica Avançada</h3>
+            <p>Utilizamos indicadores e padrões gráficos para identificar as melhores oportunidades.</p>
+          </div>
         </div>
-        <div class="col-md-6" data-aos="fade-left">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit sapien id nunc mollis ultricies. Nullam feugiat quam id massa elementum, sit amet volutpat ligula aliquet.</p>
+        <div class="col-lg-3 col-md-6 mb-4" data-aos="zoom-in">
+          <div class="text-center">
+            <i class="fas fa-balance-scale fa-3x mb-3"></i>
+            <h3>Gestão de Risco Rigorosa</h3>
+            <p>Implementamos stop-loss e take-profit para proteger o capital dos investidores.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4" data-aos="zoom-in">
+          <div class="text-center">
+            <i class="fas fa-robot fa-3x mb-3"></i>
+            <h3>Algoritmos de Trading</h3>
+            <p>Desenvolvemos e otimizamos algoritmos para executar trades com precisão.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4" data-aos="zoom-in">
+          <div class="text-center">
+            <i class="fas fa-globe fa-3x mb-3"></i>
+            <h3>Diversificação Global</h3>
+            <p>Operamos em múltiplos mercados e ativos para reduzir o risco e maximizar retornos.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- O que é uma conta PAMM? -->
+  <section id="pamm-info" class="py-5" data-aos="fade-left">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">O que é uma conta PAMM?</h2>
+      <p>PAMM (Percent Allocation Management Module) é um sistema de gestão de investimentos que permite que investidores participem de estratégias de trading profissionais.</p>
+      <ul>
+        <li>Investidores confiam seu capital a um gestor profissional.</li>
+        <li>O gestor opera no mercado usando fundos combinados de vários investidores.</li>
+        <li>Lucros e perdas são distribuídos proporcionalmente entre os investidores.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Histórico de Performance -->
+  <section id="performance" class="py-5" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Histórico de Performance</h2>
+      <!-- Chart and details -->
+    </div>
+  </section>
+
+  <!-- Calculadora -->
+  <section id="calculator" class="py-5 bg-light" data-aos="fade-down">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Calculadora de Retorno</h2>
+      <!-- Calculadora details -->
+    </div>
+  </section>
+
+  <!-- Nossa Corretora -->
+  <section id="broker-info" class="py-5" data-aos="fade-right">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Nossa Corretora: Moneta Markets</h2>
+      <!-- Corretora details -->
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="py-5" data-aos="fade-left">
+    <div class="container">
+      <h2 class="section-title text-center mb-4">Blog e Notícias</h2>
+      <!-- Blog grid -->
+    </div>
+  </section>
+
   <!-- Footer -->
-  <footer class="text-center py-4">
-    <p>&copy; 2024 Minha Página. Todos os direitos reservados.</p>
+  <footer class="text-center py-4 bg-dark text-white">
+    <p>© 2024 ZARF Strategy Investimentos. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- AOS JS (Animate on Scroll) -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  
-  <!-- AOS Init -->
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
+    // Initialize AOS
     AOS.init({
-      duration: 1200,  // Duração das animações (em ms)
+      duration: 1000, // Duration of the animation (1 second)
+      once: true // Animation occurs only once
     });
   </script>
-
 </body>
+
 </html>
