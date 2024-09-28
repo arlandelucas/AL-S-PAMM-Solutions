@@ -1,1 +1,1 @@
-# AL-S-PAMM-Solutions
+# ALS Strategy
