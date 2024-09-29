@@ -1,7 +1,6 @@
 /* Estilos para a tabela */
 table {
-    width: 100%;
-    max-width: 800px;
+    width: 80%;
     margin: 20px auto;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
@@ -27,9 +26,8 @@ table tr:hover {
     background-color: #ddd;
 }
 
-h1 {
+h2 {
     text-align: center;
-    font-size: 2em;
     margin-top: 20px;
     color: #333;
 }

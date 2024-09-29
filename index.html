@@ -1,4 +1,6 @@
-<html></html>
+<html>
+
+</html>
 
 <head>
   <base href="">
@@ -55,7 +57,7 @@
       </ul>
     </nav>
   </header>
-  
+
 
   <main>
     <section id="home" class="hero">
@@ -160,46 +162,8 @@
         <p>* Rentabilidade passada não garante resultados futuros. Investimentos envolvem riscos.</p>
       </div>
     </section>
-    <title>Informações da Conta My fxbook</title>
-    <link rel="stylesheet" href="/my fxbook.css">
-</head>
-<body>
-    <h1>Informações da Conta Myfxbook</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome da Conta</th>
-                <th>Saldo</th>
-                <th>Lucro</th>
-                <th>Drawdown</th>
-            </tr>
-        </thead>
-        <tbody id="dados-conta">
-            <!-- Os dados serão preenchidos dinamicamente via JavaScript -->
-        </tbody>
-    </table>
 
-    <script>
-        // Carregar o arquivo JSON gerado pelo Python e preencher a tabela
-        fetch('dados_conta.json')
-            .then(response => response.json())
-            .then(dados => {
-                const tabelaBody = document.getElementById('dados-conta');
-                dados.accounts.forEach(conta => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${conta.name}</td>
-                        <td>${conta.balance}</td>
-                        <td>${conta.profit}</td>
-                        <td>${conta.drawdown}</td>
-                    `;
-                    tabelaBody.appendChild(row);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar o JSON:', error);
-            });
-    </script>
+
     <section id="news-sources" class="section">
       <div class="container">
         <h2 class="section-title">Fontes Confiáveis de Notícias Financeiras</h2>
@@ -385,8 +349,8 @@
       <div class="container">
         <h2 class="section-title">Nossa Visão Geral</h2>
         <div class="vision-content">
-          <p>A ALS Strategy Investimentos, ao oferecer soluções personalizadas de gestão de contas PAMM, transcende a mera alocação de recursos financeiros. A empresa atua como catalisadora de um futuro mais promissor, impulsionando o crescimento econômico e social. Ao investir em empresas e projetos inovadores e sustentáveis, a ALS  contribui para a construção de um mundo mais justo e equitativo.</p>
-          <p>Além disso, ao empoderar seus clientes financeiramente e se engajar em iniciativas de responsabilidade social, a ALS  demonstra seu compromisso com um futuro mais sustentável. A transparência e a autenticidade com que a ALS  comunica seu impacto atraem clientes que compartilham de seus valores, fortalecendo sua posição no mercado e consolidando sua reputação como uma empresa que vai além dos números.</p>
+          <p>A ALS Strategy Investimentos, ao oferecer soluções personalizadas de gestão de contas PAMM, transcende a mera alocação de recursos financeiros. A empresa atua como catalisadora de um futuro mais promissor, impulsionando o crescimento econômico e social. Ao investir em empresas e projetos inovadores e sustentáveis, a ALS contribui para a construção de um mundo mais justo e equitativo.</p>
+          <p>Além disso, ao empoderar seus clientes financeiramente e se engajar em iniciativas de responsabilidade social, a ALS demonstra seu compromisso com um futuro mais sustentável. A transparência e a autenticidade com que a ALS comunica seu impacto atraem clientes que compartilham de seus valores, fortalecendo sua posição no mercado e consolidando sua reputação como uma empresa que vai além dos números.</p>
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
+from flask import Flask, render_template
 import requests
-import json
+
+app = Flask(__name__)
 
 # Credenciais do Myfxbook
 myfxbook_email = 'arlandelucas72@gmail.com'
@@ -21,16 +23,15 @@ def obter_informacoes_conta(session):
     response = requests.get(url)
     return response.json()
 
-# Função para gerar arquivo JSON com dados da conta
-def gerar_json(dados_conta):
-    with open('dados_conta.json', 'w') as file:
-        json.dump(dados_conta, file)
-    print("Arquivo JSON gerado com sucesso!")
+@app.route('/')
+def index():
+    # Autenticar e buscar os dados da conta
+    session_id = autenticar_myfxbook(myfxbook_email, myfxbook_password)
+    if session_id:
+        dados_conta = obter_informacoes_conta(session_id)
+        return render_template('index.html', contas=dados_conta['accounts'])
+    else:
+        return "Erro ao autenticar no Myfxbook", 500
 
-# Fluxo principal
-session_id = autenticar_myfxbook(myfxbook_email, myfxbook_password)
-if session_id:
-    dados_conta = obter_informacoes_conta(session_id)
-    gerar_json(dados_conta)
-else:
-    print("Erro ao autenticar no Myfxbook.")
+if __name__ == '__main__':
+    app.run(debug=True)
