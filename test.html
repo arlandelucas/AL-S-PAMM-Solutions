@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myfxbook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        .info-section h2 {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .info-section div {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .info-section div span {
+            font-weight: bold;
+        }
+
+        .table-section {
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table td {
+            background-color: #f9f9f9;
+        }
+
+        #chartContainer {
+            width: 100%;
+            height: 400px;
+        }
+
+        #accountChart {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Informações da Conta Myfxbook</h1>
+
+        <!-- Sessão de informações gerais -->
+        <div class="info-section">
+            <h2>Resumo da Conta</h2>
+            <div id="nomeConta">Nome da Conta: <span></span></div>
+            <div id="lucro">Lucro: <span></span></div>
+            <div id="saldo">Saldo: <span></span></div>
+            <div id="equidade">Equidade: <span></span></div>
+            <div id="drawdown">Rebaixamento: <span></span></div>
+            <div id="atualizado">Última Atualização: <span></span></div>
+        </div>
+
+        <!-- Sessão de tabela de dados detalhados -->
+        <div class="table-section">
+            <h2>Estatísticas Detalhadas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Depósitos</th>
+                        <th>Saques</th>
+                        <th>Lucro Total</th>
+                        <th>Ganho Absoluto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="depositos"></td>
+                        <td id="saques"></td>
+                        <td id="lucroTotal"></td>
+                        <td id="ganhoAbsoluto"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sessão do gráfico -->
+        <div id="chartContainer">
+            <canvas id="accountChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Importando a biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Função para autenticar no Myfxbook
+        async function autenticarMyfxbook(email, senha) {
+            const url = `https://www.myfxbook.com/api/login.json?email=${email}&password=${senha}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (response.ok && data.session) {
+                return data.session;
+            } else {
+                console.error("Erro ao autenticar no Myfxbook:", data);
+                return null;
+            }
+        }
+
+        // Função para obter as informações da conta Myfxbook
+        async function obterInformacoesConta(session) {
+            const url = `https://www.myfxbook.com/api/get-my-accounts.json?session=${session}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (response.ok && data.accounts) {
+                return data.accounts[0]; // Retorna a primeira conta (ajuste conforme necessário)
+            } else {
+                console.error("Erro ao obter informações da conta:", data);
+                return null;
+            }
+        }
+
+        // Função para preencher os campos de dados na interface
+        function preencherCampos(conta) {
+            document.getElementById('nomeConta').querySelector('span').innerText = conta.name || 'N/A';
+            document.getElementById('lucro').querySelector('span').innerText = `${conta.gain || 'N/A'}%`;
+            document.getElementById('saldo').querySelector('span').innerText = `R$ ${conta.balance || 'N/A'}`;
+            document.getElementById('equidade').querySelector('span').innerText = `R$ ${conta.equity || 'N/A'}`;
+            document.getElementById('drawdown').querySelector('span').innerText = `${conta.drawdown || 'N/A'}%`;
+            document.getElementById('atualizado').querySelector('span').innerText = conta.updateTime || 'N/A';
+
+            document.getElementById('depositos').innerText = `R$ ${conta.deposit || 'N/A'}`;
+            document.getElementById('saques').innerText = `R$ ${conta.withdraw || 'N/A'}`;
+            document.getElementById('lucroTotal').innerText = `R$ ${conta.profit || 'N/A'}`;
+            document.getElementById('ganhoAbsoluto').innerText = `${conta.absGain || 'N/A'}%`;
+        }
+
+        // Função para preencher o gráfico de crescimento com dados simulados
+        function preencherGrafico(dadosDiarios) {
+            const ctx = document.getElementById('accountChart').getContext('2d');
+            const labels = dadosDiarios.map(dado => dado.date);
+            const dataBalance = dadosDiarios.map(dado => dado.balance);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Crescimento do Saldo',
+                            data: dataBalance,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            fill: true,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // Função principal para carregar os dados
+        async function carregarDados() {
+            const email = 'arlandelucas72@gmail.com'; // Substitua pelo seu email Myfxbook
+            const senha = 'Ddtank8493@'; // Substitua pela sua senha Myfxbook
+
+            const session = await autenticarMyfxbook(email, senha);
+            if (session) {
+                const conta = await obterInformacoesConta(session);
+                if (conta) {
+                    preencherCampos(conta);
+
+                    // Dados simulados para o gráfico (pode ser substituído por dados reais da API)
+                    const dadosDiarios = [
+                        {"date": "2024-09-01", "balance": 10000.00},
+                        {"date": "2024-09-02", "balance": 10050.00},
+                        {"date": "2024-09-03", "balance": 10100.00},
+                        {"date": "2024-09-04", "balance": 10160.00},
+                        {"date": "2024-09-05", "balance": 10230.00}
+                    ];
+                    preencherGrafico(dadosDiarios);
+                } else {
+                    alert("Erro ao obter os dados da conta.");
+                }
+            } else {
+                alert("Erro ao autenticar. Verifique suas credenciais.");
+            }
+        }
+
+        // Carrega os dados automaticamente quando a página é carregada
+        window.onload = carregarDados;
+    </script>
+</body>
+</html>

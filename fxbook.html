@@ -170,36 +170,77 @@
             document.getElementById('ganhoAbsoluto').innerText = `${conta.absGain || 'N/A'}%`;
         }
 
-        // Função para preencher o gráfico de crescimento com dados simulados
-        function preencherGrafico(dadosDiarios) {
-            const ctx = document.getElementById('accountChart').getContext('2d');
-            const labels = dadosDiarios.map(dado => dado.date);
-            const dataBalance = dadosDiarios.map(dado => dado.balance);
+        // Função para preencher o gráfico de crescimento com dados reais da API
+        async function preencherGraficoReais(session, accountId) {
+            const url = `https://www.myfxbook.com/api/get-data-daily.json?session=${session}&id=${accountId}`; // Substituir pela API correta
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (response.ok && data.data) {
+                const ctx = document.getElementById('accountChart').getContext('2d');
+                
+                // Extraindo dados reais
+                const labels = data.data.map(dado => new Date(dado.date).toLocaleDateString('pt-BR'));
+                const dataBalance = data.data.map(dado => dado.balance);
+                const dataEquity = data.data.map(dado => dado.equity);
 
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Crescimento do Saldo',
-                            data: dataBalance,
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            fill: true,
-                            tension: 0.1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: false
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Crescimento do Saldo',
+                                data: dataBalance,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            },
+                            {
+                                label: 'Equidade',
+                                data: dataEquity,
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                fill: true,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Valores em R$'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Data'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return `R$ ${tooltipItem.raw.toFixed(2)}`;
+                                    }
+                                }
+                            }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                console.error("Erro ao obter dados para o gráfico:", data);
+            }
         }
 
         // Função principal para carregar os dados
@@ -213,15 +254,8 @@
                 if (conta) {
                     preencherCampos(conta);
 
-                    // Dados simulados para o gráfico (pode ser substituído por dados reais da API)
-                    const dadosDiarios = [
-                        {"date": "2024-09-01", "balance": 10000.00},
-                        {"date": "2024-09-02", "balance": 10050.00},
-                        {"date": "2024-09-03", "balance": 10100.00},
-                        {"date": "2024-09-04", "balance": 10160.00},
-                        {"date": "2024-09-05", "balance": 10230.00}
-                    ];
-                    preencherGrafico(dadosDiarios);
+                    // Preencher gráfico com dados reais da conta
+                    preencherGraficoReais(session, conta.id);
                 } else {
                     alert("Erro ao obter os dados da conta.");
                 }
