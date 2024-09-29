@@ -1,8 +1,0 @@
-/meu-projeto
-├── /dados
-│   ├── dados_conta.json         # Arquivo JSON gerado pelo Python com dados do Myfxbook
-├── /static
-│   ├── style.css                # Arquivo CSS para estilizar o HTML
-├── /templates
-│   ├── index.html               # Página HTML principal com JavaScript
-├── script.py                    # Script Python para gerar os dados
