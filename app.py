@@ -1,37 +1,43 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, request
 import requests
 
 app = Flask(__name__)
 
-# Credenciais do Myfxbook
-myfxbook_email = 'arlandelucas72@gmail.com'
-myfxbook_password = 'Ddtank8493@'
+# Credenciais Myfxbook
+MYFXBOOK_EMAIL = 'arlandelucas72@gmail.com'
+MYFXBOOK_PASSWORD = 'Ddtank8493@'
 
 # Função para autenticar no Myfxbook
-def autenticar_myfxbook(email, senha):
-    url = f'https://www.myfxbook.com/api/login.json?email={email}&password={senha}'
+def autenticar_myfxbook():
+    url = f'https://www.myfxbook.com/api/login.json?email={MYFXBOOK_EMAIL}&password={MYFXBOOK_PASSWORD}'
     response = requests.get(url)
     if response.status_code == 200:
-        return response.json()['session']
+        return response.json().get('session')
     else:
-        print("Erro ao autenticar.")
         return None
 
 # Função para obter dados da conta
-def obter_informacoes_conta(session):
+@app.route('/api/conta', methods=['GET'])
+def obter_informacoes_conta():
+    session = autenticar_myfxbook()
+    if not session:
+        return jsonify({'error': 'Erro ao autenticar no Myfxbook'}), 400
+
     url = f'https://www.myfxbook.com/api/get-my-accounts.json?session={session}'
     response = requests.get(url)
-    return response.json()
+    return jsonify(response.json())
 
-@app.route('/')
-def index():
-    # Autenticar e buscar os dados da conta
-    session_id = autenticar_myfxbook(myfxbook_email, myfxbook_password)
-    if session_id:
-        dados_conta = obter_informacoes_conta(session_id)
-        return render_template('index.html', contas=dados_conta['accounts'])
-    else:
-        return "Erro ao autenticar no Myfxbook", 500
+# Função para obter dados diários da conta
+@app.route('/api/conta/<int:account_id>/dados-diarios', methods=['GET'])
+def obter_dados_diarios(account_id):
+    session = autenticar_myfxbook()
+    if not session:
+        return jsonify({'error': 'Erro ao autenticar no Myfxbook'}), 400
 
+    url = f'https://www.myfxbook.com/api/get-data-daily.json?session={session}&id={account_id}'
+    response = requests.get(url)
+    return jsonify(response.json())
+
+# Executa o servidor Flask
 if __name__ == '__main__':
     app.run(debug=True)

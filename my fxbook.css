@@ -1,9 +1,46 @@
-/* Estilos para a tabela */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+#chartContainer {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
 table {
-    width: 80%;
+    width: 100%;
+    max-width: 1000px;
     margin: 20px auto;
     border-collapse: collapse;
-    font-family: Arial, sans-serif;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 table th, 
@@ -16,6 +53,11 @@ table td {
 table th {
     background-color: #4CAF50;
     color: white;
+    font-size: 1rem;
+}
+
+table td {
+    font-size: 0.9rem;
 }
 
 table tr:nth-child(even) {
@@ -26,8 +68,36 @@ table tr:hover {
     background-color: #ddd;
 }
 
-h2 {
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    table th, 
+    table td {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    canvas {
+        height: auto;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    table th, 
+    table td {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+
+    canvas {
+        height: auto;
+        max-height: 250px;
+    }
 }
