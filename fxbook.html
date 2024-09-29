@@ -11,7 +11,7 @@
             margin: 0;
             padding: 20px;
         }
-        
+
         .container {
             background-color: #fff;
             max-width: 1200px;
@@ -78,11 +78,38 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Spinner de carregamento */
+        #loading {
+            display: none;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+
+        /* Tema escuro */
+        body.dark-theme {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container.dark-theme {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        table.dark-theme th, table.dark-theme td {
+            border-color: #444;
+            background-color: #2e2e2e;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Informações da Conta Myfxbook</h1>
+
+        <!-- Botão de alternar tema -->
+        <button onclick="alternarTema()">Alternar Tema Escuro</button>
 
         <!-- Sessão de informações gerais -->
         <div class="info-section">
@@ -98,7 +125,7 @@
         <!-- Sessão de tabela de dados detalhados -->
         <div class="table-section">
             <h2>Estatísticas Detalhadas</h2>
-            <table>
+            <table id="tableAccount">
                 <thead>
                     <tr>
                         <th>Depósitos</th>
@@ -118,26 +145,37 @@
             </table>
         </div>
 
+        <!-- Spinner de carregamento -->
+        <div id="loading">Carregando...</div>
+
         <!-- Sessão do gráfico -->
         <div id="chartContainer">
             <canvas id="accountChart"></canvas>
         </div>
 
+        <!-- Botão de exportar gráfico -->
+        <button onclick="exportarGrafico()">Exportar Gráfico</button>
     </div>
 
-    <!-- Importando a biblioteca Chart.js -->
+    <!-- Importando a biblioteca Chart.js e o plugin de zoom/pan -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.1.1"></script>
 
     <script>
+        const formatadorMoeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+        const formatadorPercentual = new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 2 });
+
         // Função para autenticar no Myfxbook
         async function autenticarMyfxbook(email, senha) {
+            mostrarLoading();
             const url = `https://www.myfxbook.com/api/login.json?email=${email}&password=${senha}`;
             const response = await fetch(url);
             const data = await response.json();
+            esconderLoading();
             if (response.ok && data.session) {
                 return data.session;
             } else {
-                console.error("Erro ao autenticar no Myfxbook:", data);
+                alert("Erro ao autenticar no Myfxbook.");
                 return null;
             }
         }
@@ -148,9 +186,9 @@
             const response = await fetch(url);
             const data = await response.json();
             if (response.ok && data.accounts) {
-                return data.accounts[0]; // Retorna a primeira conta (ajuste conforme necessário)
+                return data.accounts[0]; // Retorna a primeira conta
             } else {
-                console.error("Erro ao obter informações da conta:", data);
+                alert("Erro ao obter informações da conta.");
                 return null;
             }
         }
@@ -158,16 +196,16 @@
         // Função para preencher os campos de dados na interface
         function preencherCampos(conta) {
             document.getElementById('nomeConta').querySelector('span').innerText = conta.name || 'N/A';
-            document.getElementById('lucro').querySelector('span').innerText = `${conta.gain || 'N/A'}%`;
-            document.getElementById('saldo').querySelector('span').innerText = `R$ ${conta.balance || 'N/A'}`;
-            document.getElementById('equidade').querySelector('span').innerText = `R$ ${conta.equity || 'N/A'}`;
-            document.getElementById('drawdown').querySelector('span').innerText = `${conta.drawdown || 'N/A'}%`;
+            document.getElementById('lucro').querySelector('span').innerText = formatadorPercentual.format(conta.gain / 100) || 'N/A';
+            document.getElementById('saldo').querySelector('span').innerText = formatadorMoeda.format(conta.balance) || 'N/A';
+            document.getElementById('equidade').querySelector('span').innerText = formatadorMoeda.format(conta.equity) || 'N/A';
+            document.getElementById('drawdown').querySelector('span').innerText = formatadorPercentual.format(conta.drawdown / 100) || 'N/A';
             document.getElementById('atualizado').querySelector('span').innerText = conta.updateTime || 'N/A';
 
-            document.getElementById('depositos').innerText = `R$ ${conta.deposit || 'N/A'}`;
-            document.getElementById('saques').innerText = `R$ ${conta.withdraw || 'N/A'}`;
-            document.getElementById('lucroTotal').innerText = `R$ ${conta.profit || 'N/A'}`;
-            document.getElementById('ganhoAbsoluto').innerText = `${conta.absGain || 'N/A'}%`;
+            document.getElementById('depositos').innerText = formatadorMoeda.format(conta.deposit) || 'N/A';
+            document.getElementById('saques').innerText = formatadorMoeda.format(conta.withdraw) || 'N/A';
+            document.getElementById('lucroTotal').innerText = formatadorMoeda.format(conta.profit) || 'N/A';
+            document.getElementById('ganhoAbsoluto').innerText = formatadorPercentual.format(conta.absGain / 100) || 'N/A';
         }
 
         // Função para preencher o gráfico de crescimento com dados reais da API
@@ -175,11 +213,10 @@
             const url = `https://www.myfxbook.com/api/get-data-daily.json?session=${session}&id=${accountId}`; // Substituir pela API correta
             const response = await fetch(url);
             const data = await response.json();
-            
+
             if (response.ok && data.data) {
                 const ctx = document.getElementById('accountChart').getContext('2d');
                 
-                // Extraindo dados reais
                 const labels = data.data.map(dado => new Date(dado.date).toLocaleDateString('pt-BR'));
                 const dataBalance = data.data.map(dado => dado.balance);
                 const dataEquity = data.data.map(dado => dado.equity);
@@ -225,6 +262,16 @@
                             }
                         },
                         plugins: {
+                            zoom: {
+                                pan: {
+                                    enabled: true,
+                                    mode: 'xy'
+                                },
+                                zoom: {
+                                    enabled: true,
+                                    mode: 'xy'
+                                }
+                            },
                             legend: {
                                 position: 'top'
                             },
@@ -239,7 +286,7 @@
                     }
                 });
             } else {
-                console.error("Erro ao obter dados para o gráfico:", data);
+                alert("Erro ao obter dados para o gráfico.");
             }
         }
 
@@ -253,16 +300,37 @@
                 const conta = await obterInformacoesConta(session);
                 if (conta) {
                     preencherCampos(conta);
-
-                    // Preencher gráfico com dados reais da conta
                     preencherGraficoReais(session, conta.id);
-                } else {
-                    alert("Erro ao obter os dados da conta.");
                 }
-            } else {
-                alert("Erro ao autenticar. Verifique suas credenciais.");
             }
         }
+
+        // Função para alternar o tema escuro
+        function alternarTema() {
+            document.body.classList.toggle('dark-theme');
+            document.querySelector('.container').classList.toggle('dark-theme');
+            document.getElementById('tableAccount').classList.toggle('dark-theme');
+        }
+
+        // Função para mostrar/esconder loading
+        function mostrarLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function esconderLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Função para exportar gráfico como imagem
+        function exportarGrafico() {
+            const link = document.createElement('a');
+            link.href = document.getElementById('accountChart').toDataURL('image/png');
+            link.download = 'grafico_myfxbook.png';
+            link.click();
+        }
+
+        // Atualiza os dados a cada 5 minutos
+        setInterval(carregarDados, 300000); // 300000ms = 5 minutos
 
         // Carrega os dados automaticamente quando a página é carregada
         window.onload = carregarDados;
